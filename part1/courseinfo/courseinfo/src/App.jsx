@@ -1,15 +1,18 @@
 export default function App() {
-  const parts = [
-    { name: "Fundamentals of React", number: 10 },
-    { name: "Using props to pass data", number: 7 },
-    { name: "State of a component", number: 14},
-  ]
-
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      { name: "Fundamentals of React", exercises: 10 },
+      { name: "Using props to pass data", exercises: 7 },
+      { name: "State of a component", exercises: 14},
+    ]
+  }
+  
   return (
     <>
-      <Header courseName="Half Stack application development"></Header>
-      <Content parts={parts}></Content>
-      <Total parts={parts}></Total>
+      <Header courseName={course.name}></Header>
+      <Content parts={course.parts}></Content>
+      <Total parts={course.parts}></Total>
     </>
   )
 }
@@ -37,7 +40,7 @@ function Content(props) {
 function Total(props) {
   return (
     <>
-    <p>Number of parts {props.parts[0].number + props.parts[1].number + props.parts[2].number}</p>
+    <p>exercises of parts {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
     </>
     
   )
@@ -48,7 +51,7 @@ function Part(props) {
   console.log(props.part);
   return (
     <>
-      <p>{props.part.name} {props.part.number}</p>
+      <p>{props.part.name} {props.part.exercises}</p>
     </>
   )
 }
