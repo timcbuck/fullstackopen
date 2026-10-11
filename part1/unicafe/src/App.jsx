@@ -49,12 +49,20 @@ const Statistics = ({ good, neutral, bad, all }) => {
   return (
     <div>
     <Header text="Statistics"></Header>
-    <p>good {good}</p>
-    <p>neutral {neutral}</p>
-    <p>bad {bad}</p>
-    <p>all {all}</p>
-    <p>average {all ? (good - bad) / all : 0}</p>
-    <p>positive {all ? good / all * 100 : 0}%</p>
+    <StatisticLine text="good" stat={good}></StatisticLine>
+    <StatisticLine text="neutral" stat={neutral}></StatisticLine>
+    <StatisticLine text="bad" stat={bad}></StatisticLine>
+    <StatisticLine text="all" stat={all}></StatisticLine>
+    <StatisticLine text="average" stat={(good - bad) / all}></StatisticLine>
+    <StatisticLine text="positive" stat={good / all * 100}></StatisticLine>
+    </div>
+  )
+}
+
+const StatisticLine = (props) => {
+  return (
+    <div>
+      <p>{props.text} {props.stat}{props.text === "positive" ? "%" : ""}</p>
     </div>
   )
 }
