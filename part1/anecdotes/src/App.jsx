@@ -13,11 +13,27 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0)) // [0, 0, 0, 0...]
+   // derive highest voted anecdote from votes state, instead of creating a separate state!
+  const highestVoteIndex = votes.indexOf(Math.max(...votes))
+  const mostVotedAnecdote = anecdotes[highestVoteIndex]
+
+  const vote = () => {
+    const newVotes = [...votes]
+    newVotes[selected] += 1
+    setVotes(newVotes)
+    console.log(newVotes) // pass through 'newVotes' -> current state, 'votes' -> old state
+  }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
+      <Button onClick={vote} text="vote"></Button>
       <Button onClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} text="next anecdote"></Button>
+      <h1>Anecdote with most votes</h1>
+      <p>{mostVotedAnecdote}</p>
     </div>
   )
 }
